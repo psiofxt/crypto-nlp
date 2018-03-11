@@ -1,6 +1,0 @@
-[
-  {"text": "Litecoin is doing very well", "label": "pos"},
-  {"text": "Litecoin is crashing", "label": "neg"},
-  {"text": "Litecoin is the best coin", "label": "pos"},
-  {"text": "Litecoin is my favorite coin", "label": "pos"}
-]
