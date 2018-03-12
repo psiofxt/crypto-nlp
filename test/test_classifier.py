@@ -1,6 +1,6 @@
 # stdlib
 import logging as logger
-logging.basicConfig(level=logging.INFO)
+logger.basicConfig(level=logger.INFO)
 
 import sys
 from os import getcwd
