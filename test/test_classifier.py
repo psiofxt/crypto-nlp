@@ -25,11 +25,13 @@ def fixture_classifier():
 def fixture_test_set():
     test_set = [
         ('Litecoin is good', 'pos'),
-        ('Litecoin is bad', 'neg')
+        ('Litecoin is bad', 'neg'),
+        ('Litecoin appears to be crashing', 'neg')
     ]
     return test_set
 
 
+@pytest.mark.accuracy
 def test_accuracy(fixture_classifier, fixture_test_set):
     accuracy = fixture_classifier.accuracy(fixture_test_set)
     logger.info(f'Accuracy is: {accuracy}')
