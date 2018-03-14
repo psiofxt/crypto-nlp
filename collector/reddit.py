@@ -17,3 +17,9 @@ def reddit_client():
     )
 
     return reddit
+
+
+def get_posts(subreddit, style, limit):
+    subreddit = r.subreddit(subreddit)
+    posts = getattr(subreddit, style)(limit=limit)
+    return posts
