@@ -15,3 +15,5 @@ def reddit_client():
         client_secret = config.reddit_secret,
         user_agent = 'crypto-nlp-api'
     )
+
+    return reddit
