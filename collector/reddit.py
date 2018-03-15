@@ -28,6 +28,7 @@ def get_all_comments(posts, keyword):
     comments = []
     for post in posts:
         for comment in post.comments.list():
-            if keyword in comment.body.lower():
-                comments.append(comment.lower())
+            if not isinstance(comment, praw.models.reddit.more.MoreComments) and \
+               keyword in comment.body.lower():
+                comments.append(comment.body.lower())
     return comments
