@@ -22,3 +22,12 @@ def get_posts(reddit_client, subreddit, style, limit):
     subreddit = reddit_client.subreddit(subreddit)
     posts = getattr(subreddit, style)(limit=limit)
     return posts
+
+
+def get_all_comments(posts, keyword):
+    comments = []
+    for post in posts:
+        for comment in post.comments.list():
+            if keyword in comment.body:
+                comments.append(comment.lower())
+    return comments
