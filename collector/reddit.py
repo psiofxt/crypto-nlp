@@ -28,6 +28,6 @@ def get_all_comments(posts, keyword):
     comments = []
     for post in posts:
         for comment in post.comments.list():
-            if keyword in comment.body:
+            if keyword in comment.body.lower():
                 comments.append(comment.lower())
     return comments
