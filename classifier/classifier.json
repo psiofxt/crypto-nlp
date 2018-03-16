@@ -1,9 +1,10 @@
 [
-  {"text": "Litecoin is doing very well", "label": "pos"},
-  {"text": "Litecoin is crashing", "label": "neg"},
-  {"text": "Litecoin is the best coin", "label": "pos"},
-  {"text": "Litecoin is my favorite coin", "label": "pos"},
-  {"text": "Litecoin is good", "label": "pos"},
-  {"text": "Litecoin is very good", "label": "pos"},
-  {"text": "Litecoin is bad", "label": "neg"}
+  {"text": "litecoin is doing very well", "label": "pos"},
+  {"text": "litecoin is crashing", "label": "neg"},
+  {"text": "litecoin is the best coin", "label": "pos"},
+  {"text": "litecoin is my favorite coin", "label": "pos"},
+  {"text": "litecoin is good", "label": "pos"},
+  {"text": "litecoin is very good", "label": "pos"},
+  {"text": "litecoin is bad", "label": "neg"},
+  {"text": "investing in litecoin is no better than gambling", "label": "neg"}
 ]
