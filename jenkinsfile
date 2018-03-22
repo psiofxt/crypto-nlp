@@ -1,0 +1,55 @@
+#!/usr/bin/env
+
+node {
+    gitCheckout('master')
+    CheckoutProjectInsideNode('master', 'erebor-dev')
+    InstallProjectInsideNode()
+    StartProject('erebor-dev')
+    CheckifProjectStarted('erebor-dev')
+}
+
+def gitCheckout(branch) {
+    stage('Git checkout') {
+        git branch: 'master', credentialsId: 'need_credentials', url: 'git@github.com:HoardInvest/erebor.git'
+    }
+}
+
+def CheckoutProjectInsideNode(branch, project) {
+    stage ("Checkout Project inside Node") {
+        sh """
+            ssh -o StrictHostKeyChecking=no -i /var/jenkins/.ssh/id_rsa andrew@smaugdev.hoardinvest.com -t '\\
+                sudo supervisorctl stop ${project}; \\
+                sudo rm -rf /code/hoarderebor/; \\
+                git clone -b ${branch} git@github.com:HoardInvest/erebor.git; \\
+                chown -Rf andrew: /code/hoarderebor/'
+        """
+    }
+}
+
+def InstallProjectInsideNode() {
+    stage ("Install Project inside Node") {
+        sh """
+            ssh -o StrictHostKeyChecking=no -i /var/jenkins/.ssh/id_rsa andrew@smaugdev.hoardinvest.com -t '\\
+                cd erebor; \\
+                sudo python3 setup.py install'
+        """
+    }
+}
+
+def StartProject(project){
+    stage ("Start Project") {
+        sh """
+            ssh -o StrictHostKeyChecking=no -i /var/jenkins/.ssh/id_rsa andrew@smaugdev.hoardinvest.com -t '\\
+                sudo supervisorctl start ${project}'
+        """
+    }
+}
+
+def CheckifProjectStarted(project){
+    stage ("Check Project") {
+        sh """
+            ssh -o StrictHostKeyChecking=no -i /var/jenkins/.ssh/id_rsa andrew@smaugdev.hoardinvest.com -t '\\
+                sudo supervisorctl status ${project}'
+        """
+    }
+}

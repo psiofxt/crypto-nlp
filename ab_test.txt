@@ -1,0 +1,165 @@
+[Test w/ psycopg2 only (no -k)]
+Server Software:        nginx/1.10.3
+Server Hostname:        smaugdev.hoardinvest.com
+Server Port:            80
+
+Document Path:          /login
+Document Length:        82 bytes
+
+Concurrency Level:      100
+Time taken for tests:   20.947 seconds
+Complete requests:      2000
+Failed requests:        0
+Total transferred:      1066000 bytes
+Total body sent:        452000
+HTML transferred:       164000 bytes
+Requests per second:    95.48 [#/sec] (mean)
+Time per request:       1047.357 [ms] (mean)
+Time per request:       10.474 [ms] (mean, across all concurrent requests)
+Transfer rate:          49.70 [Kbytes/sec] received
+                        21.07 kb/s sent
+                        70.77 kb/s total
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:      108  209  51.9    205     368
+Processing:   118  823 199.1    803    1305
+Waiting:      118  822 198.9    802    1304
+Total:        260 1032 196.0   1009    1672
+
+Percentage of the requests served within a certain time (ms)
+  50%   1009
+  66%   1033
+  75%   1110
+  80%   1145
+  90%   1323
+  95%   1332
+  98%   1435
+  99%   1523
+ 100%   1672 (longest request)
+
+
+[Test w/ psycopg2 only (with -k)]
+Server Software:        nginx/1.10.3
+Server Hostname:        smaugdev.hoardinvest.com
+Server Port:            80
+
+Document Path:          /login
+Document Length:        82 bytes
+
+Concurrency Level:      100
+Time taken for tests:   11.495 seconds
+Complete requests:      2000
+Failed requests:        0
+Keep-Alive requests:    2000
+Total transferred:      1076000 bytes
+Total body sent:        500000
+HTML transferred:       164000 bytes
+Requests per second:    173.98 [#/sec] (mean)
+Time per request:       574.775 [ms] (mean)
+Time per request:       5.748 [ms] (mean, across all concurrent requests)
+Transfer rate:          91.41 [Kbytes/sec] received
+                        42.48 kb/s sent
+                        133.88 kb/s total
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0   11  48.9      0     225
+Processing:     0  968 250.2   1024    1331
+Waiting:        0  968 250.2   1024    1331
+Total:          0  979 253.7   1024    1450
+
+Percentage of the requests served within a certain time (ms)
+  50%   1024
+  66%   1025
+  75%   1039
+  80%   1079
+  90%   1127
+  95%   1138
+  98%   1444
+  99%   1447
+ 100%   1450 (longest request)
+
+
+
+
+
+
+[/test_async without -k]
+Server Software:
+Server Hostname:        localhost
+Server Port:            8000
+
+Document Path:          /test_async
+Document Length:        24794 bytes
+
+Concurrency Level:      100
+Time taken for tests:   41.664 seconds
+Complete requests:      20000
+Failed requests:        0
+Total transferred:      497740000 bytes
+HTML transferred:       495880000 bytes
+Requests per second:    480.03 [#/sec] (mean)
+Time per request:       208.322 [ms] (mean)
+Time per request:       2.083 [ms] (mean, across all concurrent requests)
+Transfer rate:          11666.39 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    1   1.5      1     121
+Processing:   129  207  26.2    203     390
+Waiting:       92  185  29.0    184     377
+Total:        130  208  26.2    204     390
+
+Percentage of the requests served within a certain time (ms)
+  50%    204
+  66%    209
+  75%    213
+  80%    216
+  90%    233
+  95%    262
+  98%    302
+  99%    311
+ 100%    390 (longest request)
+
+
+
+
+
+
+[/test_psy without -k]
+Server Software:
+Server Hostname:        localhost
+Server Port:            8000
+
+Document Path:          /test_psy
+Document Length:        0 bytes
+
+Concurrency Level:      100
+Time taken for tests:   7.020 seconds
+Complete requests:      10000
+Failed requests:        0
+Total transferred:      830000 bytes
+HTML transferred:       0 bytes
+Requests per second:    1424.47 [#/sec] (mean)
+Time per request:       70.201 [ms] (mean)
+Time per request:       0.702 [ms] (mean, across all concurrent requests)
+Transfer rate:          115.46 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    2   2.5      2     231
+Processing:    12   68  23.4     64     298
+Waiting:        7   65  22.6     62     295
+Total:         16   70  23.6     66     300
+
+Percentage of the requests served within a certain time (ms)
+  50%     66
+  66%     67
+  75%     68
+  80%     69
+  90%     75
+  95%     84
+  98%     96
+  99%    104
+ 100%    300 (longest request)

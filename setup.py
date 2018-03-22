@@ -1,13 +1,17 @@
 from distutils.core import setup
-import versioneer
+from subprocess import check_output
+from crypto_release import get_version_from_git
+
+version = get_version_from_git()
+if not version:
+    raise Exception("Version formatting incompatibility")
 
 setup(
     # Application name:
     name="crypto-nlp",
 
     # Version number (initial):
-    version=versioneer.get_version(),
-    cmdclass=versioneer.get_cmdclass(),
+    version=version,
 
     # Application author details:
     author="ak",
@@ -17,7 +21,7 @@ setup(
     packages=["crypto-nlp"],
 
     # Include additional files into the package
-    #include_package_data=True,
+    include_package_data=True,
 
     # Details
     url="ankoller.com",

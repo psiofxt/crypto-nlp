@@ -1,0 +1,38 @@
+<html>
+<head></head>
+<body>
+  <p>
+    Click below to login as test.
+    <br>
+    <button type="button" onclick="unsub()">Login</button>
+
+    <script>
+    function unsub(){
+      var url = "{{url}}";
+
+      var data = {};
+      data.email_address = "test_email_pref1@testing.com";
+      data.password = "t3st"
+      var json = JSON.stringify(data);
+
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", url, true);
+      xhr.setRequestHeader('Content-type','application/json; charset=utf-8');
+
+      xhr.onload = function () {
+      	var response = JSON.parse(xhr.responseText);
+      	if (xhr.readyState == 4 && xhr.status == "200") {
+      		console.table(response);
+          window.location = '/unsubscribe'
+      	} else {
+      		console.error(response);
+          window.location = '/response/?action=unsubscribe&success=false'
+      	}
+      }
+      xhr.send(json);
+    }
+    </script>
+
+  </p>
+</body>
+</html>

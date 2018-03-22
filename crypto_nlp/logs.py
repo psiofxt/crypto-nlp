@@ -4,35 +4,29 @@ import sys
 
 logging_config = dict(
     version=1,
-    disable_existing_loggers=True,
-
-    root={
-        "level": "DEBUG",
-        "handlers": ["console", "info_file_handler", "error_file_handler"]
-    }
+    disable_existing_loggers=False,
 
     loggers={
-        """"root": {
-            "level": "DEBUG",
-            "handlers": ["console", "info_file_handler", "error_file_handler"]
+        "root": {
+            "level": "INFO",
+            "handlers": ["info_file_handler", "console"]
         },
         "sanic.error": {
             "level": "ERROR",
-            "handlers": ["error_file_handler"],
-            "propagate": False,
+            "handlers": ["error_file_handler", "error_console"],
+            "propagate": True,
             "qualname": "sanic.error"
         },
         "sanic.access": {
             "level": "INFO",
-            "handlers": ["access_console"],
-            "propagate": False,
+            "handlers": ["access_file_handler", "access_console"],
+            "propagate": True,
             "qualname": "sanic.access"
-        }"""
+        }
     },
     handlers={
         "console": {
             "class": "logging.StreamHandler",
-            "LEVEL": "DEBUG"
             "formatter": "generic",
             "stream": sys.stdout
         },
@@ -66,7 +60,7 @@ logging_config = dict(
         },
         "error_file_handler": {
             "class": "logging.handlers.RotatingFileHandler",
-            "level": "DEBUG",
+            "level": "ERROR",
             "filename": "../../temp/error.log",
             "maxBytes": 10485760,
             "backupCount": 10,
@@ -89,5 +83,5 @@ logging_config = dict(
     }
 )
 
-#dictConfig(logging_config)
-#logger = logging.getLogger(__name__)
+dictConfig(logging_config)
+logger = logging.getLogger(__name__)
