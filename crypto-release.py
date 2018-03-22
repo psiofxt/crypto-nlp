@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import argparse
 from subprocess import check_output
 
@@ -28,11 +30,13 @@ if __name__ == '__main__':
     if not len(increment):
         git_version = semantic_version.Version(git_version)
         new_version = git_version.next_patch()
+        increment_type = 'minor'
 
     # One version argument supplied. Either "major": x.0.0 or "minor": 0.x.0
     elif len(increment) == 1:
         git_version = semantic_version.Version(git_version)
-        new_version = getattr(git_version, 'next_' + list(increment.keys())[0])()
+        increment_type = list(increment.keys())[0]
+        new_version = getattr(git_version, 'next_' + increment_type)()
         print(new_version)
 
     # Multiple version arguments supplied. Unsupported
@@ -46,8 +50,6 @@ if __name__ == '__main__':
         git.add('-A')
         git.commit('-m {}'.format(args['message']))
         git.push()
-        git.tag(new_version)
-        git.push('origin tags')
-    else:
-        git.tag(new_version)
-        git.push('origin --tags')
+
+    git.tag(new_version, '-a', '-m', 'applied {}'.format(increment_type))
+    git.push('origin', new_version)
