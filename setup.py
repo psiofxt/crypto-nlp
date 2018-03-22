@@ -17,7 +17,7 @@ setup(
     packages=["crypto-nlp"],
 
     # Include additional files into the package
-    include_package_data=True,
+    #include_package_data=True,
 
     # Details
     url="ankoller.com",
