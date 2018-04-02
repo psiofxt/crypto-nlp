@@ -188,12 +188,12 @@ async def test(request):
 
 if __name__ == "__main__":
 
-    """app.blueprint(bp)
+    app.blueprint(bp)
     app.db = dict(database="test_async",
                              user="arellok",
                              password="test",
                              host='127.0.0.1',
-                             port=5432)"""
+                             port=5432)
 
     app.db_psy = psycopg2.connect(dbname="test_async",
                          user="arellok",
